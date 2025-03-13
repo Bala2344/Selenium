@@ -1,0 +1,37 @@
+package org.test;
+
+import java.awt.AWTException;
+
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.edge.EdgeDriver;
+
+public class TestConfirmAl {
+
+	
+	public static void main(String[] args) throws InterruptedException, AWTException{ 
+		
+		WebDriver driver = new EdgeDriver();
+		
+		driver.get("https://demo.automationtesting.in/Alerts.html");
+			
+		driver.manage().window().maximize();
+		
+		WebElement confirmAl = driver.findElement(By.xpath("//a[text()= 'Alert with Textbox ']"));
+        confirmAl.click();
+		
+		WebElement confirm = driver.findElement(By.xpath("//button[@onclick='promptbox()']"));
+		confirm.click();
+		
+		Alert al = driver.switchTo().alert();
+		
+		Thread.sleep(5000);
+		
+		al.accept();	
+		
+	}
+	
+	
+}
