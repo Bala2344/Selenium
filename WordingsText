@@ -1,0 +1,33 @@
+package org.test;
+
+import java.awt.AWTException;
+import java.sql.SQLException;
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class WordingsText {
+
+	public static void main(String[] args)  {
+		
+		WebDriver driver = new ChromeDriver(); //Upcasting:
+		
+		driver.get("https://adactinhotelapp.com/");
+			
+		driver.manage().window().maximize();
+		
+		driver.findElement(By.id("username")).sendKeys("Balajidemo");
+		
+		driver.findElement(By.id("password")).sendKeys("Apple@1234567");
+		
+		driver.findElement(By.name("login")).click();
+		
+	    WebElement element = driver.findElement(By.xpath("//b[ text() ='Invalid Login details or Your Password might have expired. ']"));
+	    
+		
+	
+}
+}
