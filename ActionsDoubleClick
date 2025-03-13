@@ -1,0 +1,29 @@
+package org.test;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.interactions.Actions;
+
+public class ActionsDoubleClick {
+
+	public static void main(String[] args) {
+		
+        WebDriver driver = new EdgeDriver();//upcasting
+		
+		driver.get("https://www.facebook.com");
+		
+		driver.manage().window().maximize();	
+		
+	    WebElement txtUserName = driver.findElement(By.id("email"));
+	    txtUserName.sendKeys("BalaSparks");
+	    
+	    Actions acc = new Actions(driver);
+	    
+	    acc.doubleClick(txtUserName).perform();
+	    
+	    
+	}
+	
+}
