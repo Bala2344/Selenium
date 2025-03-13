@@ -1,0 +1,35 @@
+package org.test;
+
+import java.time.Duration;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.edge.EdgeDriver;
+
+public class DynamicWait {
+
+       public static void main(String[] args) throws InterruptedException {
+	    	
+	        WebDriver driver = new EdgeDriver();
+			
+			driver.get("https://www.facebook.com/");
+			
+			driver.manage().window().maximize();
+			
+			//Dynamic >>>> Implicitly wait (immediate action perform)
+			driver.manage().timeouts().implicitlyWait(Duration.ofDays(2));
+			
+			//driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+			
+		    WebElement btnCreate = driver.findElement(By.xpath("//a[text()='Create new account']"));
+		    btnCreate.click();
+		    
+		    WebElement txtFrstName = driver.findElement(By.name("firstname"));
+			txtFrstName.sendKeys("Bala");
+			
+			
+			
+			}
+	}
