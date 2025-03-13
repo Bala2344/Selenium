@@ -1,0 +1,31 @@
+package org.test;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+
+public class Xpath {
+	
+	public static void main(String[] args) {
+		
+		WebDriver driver = new EdgeDriver();//>>>>>>imp upcasting
+		
+		driver.get("https://www.facebook.com/");
+		
+		driver.manage().window().maximize();
+		
+		WebElement txtUsername = driver.findElement(By.xpath("//input[@data-testid='royal_email']"));
+		txtUsername.sendKeys("Bala3@gmail.com");
+		
+		WebElement txtpassword = driver.findElement(By.xpath("//input[@type='password']"));
+		txtpassword.sendKeys("Welcome@54321");
+		
+		WebElement btnLogin = driver.findElement(By.xpath("//button[@data-testid='royal_login_button']"));
+		btnLogin.click();	
+		
+		
+	}
+
+}
