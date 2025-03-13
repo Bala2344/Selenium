@@ -1,0 +1,27 @@
+package org.test;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.devtools.idealized.Javascript;
+import org.openqa.selenium.edge.EdgeDriver;
+
+public class JsArgumentsExecutor {
+
+	public static void main(String[] args) {
+		
+        WebDriver driver = new EdgeDriver();
+		
+		driver.get("https://facebook.com");
+			
+		driver.manage().window().maximize();	
+		
+		JavascriptExecutor js = (JavascriptExecutor) driver; //Down casting or type casting
+		
+		WebElement txtUsername = driver.findElement(By.id("email")); 
+		js.executeScript("arguments[0].setAttribute('value','Balasparks')", txtUsername);
+		
+	}
+	
+}
