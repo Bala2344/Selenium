@@ -1,0 +1,47 @@
+package org.test;
+
+import java.awt.AWTException;
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+public class FluentWait {
+
+public static void main(String[] args) throws InterruptedException, AWTException {
+    	
+        WebDriver driver = new EdgeDriver();
+		
+		driver.get("https://www.facebook.com/");
+		
+		driver.manage().window().maximize();
+		
+	    WebElement btnCreate = driver.findElement(By.xpath("//a[text()='Create new account']"));
+	    btnCreate.click();
+	    
+	    //Dynamic >>>>Explict wait - Fluent wait
+	    //Wait w = new FluentWait(driver).withTimeout(Duration.ofSeconds(30)).
+	    //pollingEvery(Duration.ofSeconds(2)).ignoring(Throwable.class);
+	    
+	    Wait w = new FluentWait().withTimeout(Duration.ofSeconds(30)).pollingEvery(Duration.ofSeconds(2))
+	    .ignoring(Throwable.class);
+	    
+	    Object o = w.until(ExpectedConditions.visibilityOfElementLocated(By.name("firstname")));
+	    
+	    WebElement txtFirstName = (WebElement) o;
+	    txtFirstName.sendKeys("RockStar");
+	
+
+}
+
+private org.openqa.selenium.support.ui.FluentWait<WebDriver> withTimeout(Duration ofSeconds) {
+	// TODO Auto-generated method stub
+	return null;
+}
+}
+
