@@ -1,0 +1,36 @@
+package org.test;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.edge.EdgeDriver;
+
+public class JsScrollUp {
+
+	
+	public static void main(String[] args) throws InterruptedException {
+		
+        WebDriver driver = new EdgeDriver(); //Upcasting or down casting
+		
+		driver.get("https://demo.guru99.com/test/guru99home/");
+			
+		driver.manage().window().maximize();	
+			
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		
+        WebElement srollDown = driver.findElement(By.id("philadelphia-field-email"));
+		js.executeScript("arguments[0].scrollIntoView(true)", srollDown);
+		
+		Thread.sleep(5000);
+		WebElement srollUp = driver.findElement(By.xpath("//h2[contains(text(),'All Courses include')]"));
+		js.executeScript("arguments[0].scrollIntoView(false)", srollUp);
+		
+		
+		
+		
+	}
+	
+	
+	
+}
