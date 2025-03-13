@@ -1,0 +1,143 @@
+package org.test;
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.event.KeyEvent;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
+
+public class AdactinHotelBooking {
+
+	
+	public static void main(String[] args) throws SQLException, ClassNotFoundException, InterruptedException, AWTException {
+		
+	WebDriver driver = new ChromeDriver(); //Upcasting:
+	
+	driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+	
+	driver.get("https://adactinhotelapp.com/");
+		
+	driver.manage().window().maximize();
+	//Enter user name:
+	WebElement txtUsername = driver.findElement(By.id("username"));
+	txtUsername.sendKeys("Balajidemo1");
+	
+	//Enter user password:
+	Thread.sleep(1000);
+	WebElement txtPassword = driver.findElement(By.id("password"));
+	txtPassword.sendKeys("Balamysql@123");
+	
+	//click to login:
+	WebElement btnLogin = driver.findElement(By.xpath("//input[@type='Submit']"));
+	btnLogin.click();
+	
+	//select location:
+	Thread.sleep(2000);
+	WebElement txtLocation = driver.findElement(By.id("location"));
+	txtLocation.sendKeys("London");
+	
+	//select hotel;
+	WebElement txtHotels = driver.findElement(By.id("hotels"));
+	txtHotels.sendKeys("Hotel Sunshine");
+	
+	//select room type:
+	WebElement txtRoomType = driver.findElement(By.id("room_type"));
+	txtRoomType.sendKeys("Super Deluxe");
+	
+	//select room number;
+	WebElement txtNumberOfRooms = driver.findElement(By.id("room_nos"));
+	txtNumberOfRooms.sendKeys("3 - Three");
+	
+	//check in date;
+	Thread.sleep(2000);
+	WebElement txtCheckInDate = driver.findElement(By.id("datepick_in"));
+	txtCheckInDate.sendKeys("07/09/2024");
+	
+	//check out date;
+	Thread.sleep(2000);
+	WebElement txtCheckOutDate = driver.findElement(By.id("datepick_out"));
+	txtCheckOutDate.sendKeys("14/09/2024");
+	
+	//Adults per room;
+	WebElement txtAdultsPerRoom = driver.findElement(By.id("adult_room"));
+	txtAdultsPerRoom.sendKeys("2 - Two");
+	
+	//children per room;
+	Thread.sleep(2000);
+	WebElement txtChildrenPerRoom = driver.findElement(By.id("child_room"));
+	txtChildrenPerRoom.sendKeys("3 - Three");
+	
+	// To submit the form;
+	WebElement btnSearch = driver.findElement(By.id("Submit"));
+	btnSearch.click();
+	
+	// Radio button;
+	Thread.sleep(2000);
+	WebElement btnRadio = driver.findElement(By.id("radiobutton_0"));
+	btnRadio.click();
+	
+	//To press continue;
+	WebElement btnContinue = driver.findElement(By.id("continue"));
+	btnContinue.click();
+	
+	//User Firstname;
+	JavascriptExecutor js = (JavascriptExecutor) driver;
+	WebElement firstname = driver.findElement(By.id("first_name")); 
+	js.executeScript("arguments[0].setAttribute('value','Bala')", firstname);
+	
+	//User Lastname;
+	WebElement lastname = driver.findElement(By.id("last_name")); 
+	js.executeScript("arguments[0].setAttribute('value','Ajaykumar')", lastname);
+	
+	//user Adress;
+	WebElement txtArea = driver.findElement(By.id("address"));
+	txtArea.sendKeys("No:13 ghost house, Anna Nagar West, Chennai - 600101");
+	
+	//User card number;
+	WebElement txtCcNum = driver.findElement(By.id("cc_num"));
+	txtCcNum.sendKeys("0004104004606756");
+	
+	//user card type;
+	WebElement txtCcType = driver.findElement(By.id("cc_type"));
+	txtCcType.sendKeys("VISA");
+	
+	//User card expiry month;
+	WebElement txtMonth = driver.findElement(By.id("cc_exp_month"));	
+	txtMonth.sendKeys("November");
+	
+	//User card expiry year;
+	WebElement txtYear = driver.findElement(By.id("cc_exp_year"));
+	txtYear.sendKeys("2030");
+	
+	//User CVV number;
+	WebElement txtCvv = driver.findElement(By.id("cc_cvv"));
+	txtCvv.sendKeys("777");
+	
+	//To click book not btn;
+	WebElement btnBookNow = driver.findElement(By.id("book_now"));
+	btnBookNow.click();
+	
+	// To click my itenerary;
+	Thread.sleep(1000);
+	WebElement my_itinerary = driver.findElement(By.xpath("//input[@id='my_itinerary']"));
+	my_itinerary.click();
+	
+	
+
+}
+		
+}
+	
+
