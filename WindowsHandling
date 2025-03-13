@@ -1,0 +1,49 @@
+package org.test;
+
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Set;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class WindowsHandling {
+
+	public static void main(String[] args) {
+		
+		WebDriver driver = new ChromeDriver(); //Upcasting:
+		
+		driver.get("https://www.amazon.in/");
+			
+		driver.manage().window().maximize();
+	
+		WebElement search = driver.findElement(By.id("twotabsearchtextbox"));
+		search.sendKeys("iphone",Keys.ENTER);
+		
+		WebElement iphone = driver.findElement(By.xpath("//span[text()='Apple iPhone 15 (128 GB) - Blue']"));
+		iphone.click();
+		
+		String parId = driver.getWindowHandle();
+		Set<String> allId = driver.getWindowHandles();
+		
+		List<String> allWinId = new LinkedList<String>();
+		allWinId.addAll(allId);
+		
+		//Handling multiple child window
+	    for (int i = 0; i < allWinId.size(); i++) {
+			String childId = allWinId.get(1);
+			driver.switchTo().window(childId);
+		}
+		WebElement btnAddCart = driver.findElement(By.id("add-to-cart-button"));
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].click()", btnAddCart);
+		
+		
+		
+	}
+}
